@@ -34,27 +34,16 @@ export ANDROID_HOME=$HOME/Library/Android/sdk
 
 #About routes
 alias checkJavaFromPom="grep java-version pom.xml | head -1 | sed -e 's,.*<java-version>\([^<]*\)</java-version>.*,\1,g'"
-alias cdclaro="cd $HOME/development/claro/with-handlebars/gmccregistration"
-alias cdfe="cd $HOME/development/omatic/Marinerfe"
-alias mariner_run="cdfe; yarn start&;cdbe; yarn start mock&"
 alias checkAngularPush="yarn build-prod;npm test"
 alias merge="git stash;git merge $1"
 alias vcommit="git commit -v";
 alias pomJavaversion="grep  \"<java-version>\" pom.xml  "
 
-#About claro
-alias cdfgm="cd /Users/davidgk/development/claro/with-handlebars/gmccregistration/gm-frontend"
-alias simula="cd /Users/davidgk/development/claro/with-handlebars/gm-landing-simulador"
-alias cdsf="cd /Users/davidgk/development/claro/with-handlebars/gm-landing-simulador/gm-simulador-frontend"
-alias cdsb="cd /Users/davidgk/development/claro/with-handlebars/gm-landing-simulador/gm-simulador-backend"
-alias startSimula="simula; mvn clean install;cdsb;mvn spring-boot:run -Dserver.port=8090"
-
-#about mongo
+#About mongo
 alias mongoStart="mongod --dbpath ~/data/db &"
 alias mongoStop="mongo admin --eval \"db.shutdownServer()\""
 #Others
 alias cdingles="cd /Users/davidgk/Documents/ingles/level_4"
-alias changeGitNameMailForMe="git config user.name \"davidgk\";git config user.email \"david.kotlirevsky@gmail.com\""
 alias refreshSsh="ssh-add -K ~/.ssh/id_rsa_davidgk"
 
 #Rails
