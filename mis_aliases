@@ -1,0 +1,222 @@
+## docker exec -it elastic01 bash
+#COMMONS
+export MIS_APPS="$HOME/Aplications"
+export ELASTIC_HOME="/Users/davidgk/Applications/elasticsearch-6.2.3"
+export GIT_EDITOR=vim
+export MAIN_PY="~/desarrollo/proyects"
+export HOMEBREW_PREFIX="/Users/david.kotlirevsky/brewHome/usr/local" 
+export SUBLIME2_HOME="/Applications/Sublime Text.app/Contents/SharedSupport"
+export ACTIVATOR_HOME="/Users/david.kotlirevsky/Applications/activator-dist-1.3.12"
+export PHP_HOME="/Users/david.kotlirevsky/Applications/php-7.0.23"
+export CHEF_DK_HOME="/opt/chefdk"
+export MONGODB_HOME="/Users/davidgk/myApps/mongodb"
+export VIRTUAL_BOX_CMD="/Applications/VirtualBox.app/Contents/Resources/VirtualBoxVM.app/Contents/MacOS"
+export NVM_DIR="$HOME/.nvm"
+  . "/usr/local/opt/nvm/nvm.sh"
+export LOCAL_BIN='/Users/davidgk/.local/bin'
+export TF_AUTO_SAVE_CREDENTIALS=0
+export GIT_HOME="/usr/local/Cellar/git/2.15.1_1"
+export PYTHON_HOME="/usr/local/Cellar/python/3.6.5"i
+export ANACONDA_HOME="/anaconda3"
+export JBOSS_HOME="/Users/davidgk/Applications/Jboss-EAP-7"
+export NGINX_CONF_HOME="/usr/local/etc/nginx"
+export NGINX_SERVER_HOME="/usr/local/opt/nginx"
+
+# BUSSINESS
+
+#sshComunications
+alias java7="export JAVA_HOME=\"/Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home\""
+alias java8="export JAVA_HOME=\"/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home\""
+
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home"
+export ANDROID_HOME=$HOME/Library/Android/sdk
+
+
+#About routes
+alias checkJavaFromPom="grep java-version pom.xml | head -1 | sed -e 's,.*<java-version>\([^<]*\)</java-version>.*,\1,g'"
+alias cdclaro="cd $HOME/development/claro/with-handlebars/gmccregistration"
+alias cdfe="cd $HOME/development/omatic/Marinerfe"
+alias mariner_run="cdfe; yarn start&;cdbe; yarn start mock&"
+alias checkAngularPush="yarn build-prod;npm test"
+alias merge="git stash;git merge $1"
+alias vcommit="git commit -v";
+alias pomJavaversion="grep  \"<java-version>\" pom.xml  "
+
+#About claro
+alias cdfgm="cd /Users/davidgk/development/claro/with-handlebars/gmccregistration/gm-frontend"
+alias simula="cd /Users/davidgk/development/claro/with-handlebars/gm-landing-simulador"
+alias cdsf="cd /Users/davidgk/development/claro/with-handlebars/gm-landing-simulador/gm-simulador-frontend"
+alias cdsb="cd /Users/davidgk/development/claro/with-handlebars/gm-landing-simulador/gm-simulador-backend"
+alias startSimula="simula; mvn clean install;cdsb;mvn spring-boot:run -Dserver.port=8090"
+
+#about mongo
+alias mongoStart="mongod --dbpath ~/data/db &"
+alias mongoStop="mongo admin --eval \"db.shutdownServer()\""
+#Others
+alias cdingles="cd /Users/davidgk/Documents/ingles/level_4"
+alias changeGitNameMailForMe="git config user.name \"davidgk\";git config user.email \"david.kotlirevsky@gmail.com\""
+alias refreshSsh="ssh-add -K ~/.ssh/id_rsa_davidgk"
+
+#Rails
+alias tren="./bin/rails $1"
+alias postgres_start="brew services start postgresql"
+alias postgres_stop="brew services stop postgresql"
+
+#PYTHON
+alias pyma="python manage.py"
+
+#react 
+alias reactCreateApp="create-react-app $1"
+
+#COMMONS
+alias found="ps -fea | grep $1"
+alias portProcessFounder="lsof -i:$1 -t"
+alias getPid="ps -aef | grep $1 | tr -s ' ' ' ' | cut -f2 -d ' '"
+
+alias unzi7zp="7z x $1"
+alias cd1="cd .."
+alias cd2="cd ../.."
+alias cd3="cd ../../.."
+alias cd4="cd ../../../.."
+alias cd5="cd ../../../../.."
+alias cd6="cd ../../../../../.."
+
+alias launcher_creator="gnome-desktop-item-edit ~/.local/share/applications --create-new"
+alias rstb="reload_aliases"
+alias la="ls -all"
+
+#GIT
+alias undoLastCommit='git reset --soft HEAD\^'
+alias sacarDelStage='git reset HEAD $1'
+alias update='git pull origin master'
+alias gstat='git status'
+alias commit='git commit -a -m $1'
+alias mcommit='git commit -m $1'
+alias gitb='git branch' 
+alias gadd='git add $1' 
+alias gdif='git diff $1' 
+alias gitck='git checkout ' 
+alias glogComplete='git log'
+alias glog='git log --oneline'
+alias delbranch="git branch -D $1"
+alias pointBranch="git branch --set-upstream-to=origin/$1 $1"
+
+#apache
+
+alias editBash="cd ; vim .aliases;rstb; cd -"
+alias reload_aliases="source ~/.zshrc"
+
+#Ports Confing
+alias enable_ufw="sudo ufw enable"
+alias disable_ufw="sudo ufw disable"
+alias allow_port="sudo ufw allow $1"
+alias check_open_port="netstat -tulnp | grep $1"
+
+export PS1="\u > "
+
+#MAVEN
+export M2_HOME="/Users/david.kotlirevsky/myApps/apache-maven-3.5.0"
+alias runTest="mvn -Dtest=$1 test"
+
+
+
+function rms {
+   echo "Seguro de borrar lo seccionado (y/n):"
+   read respuesta
+   [[ "$respuesta" == "y" ]] && rm -rf $1;		
+
+}
+
+function replacer {    		
+sed "s/ /_/g" <<<"$1"
+}
+
+function cdk {
+	mkdir $1;
+	cd $1;
+}
+
+
+# pushea el cambio, creando en remoto el branch donde estas parado.
+function gpush {
+        if [ ! $1  ] ; then
+	      git push -u origin $(git rev-parse --abbrev-ref HEAD)
+        else
+              git push -u origin $1
+        fi
+}
+
+function pushForce {
+        if [ ! $1  ] ; then
+              git push origin $(git rev-parse --abbrev-ref HEAD) -f
+        else
+              git push origin $1 -f
+        fi
+}
+
+# pushea el cambio al branch donde estes apuntadno, si no existe no lo puede hacer en el remoto
+function pushChanges {
+	if [ ! $1 ] ; then 
+		git push remote $(git rev-parse --abbrev-ref HEAD)
+	else
+		git push remote $1
+	fi
+
+}
+
+
+function gitck {
+	if [ ! $1 ] ;  then 
+		git checkout  master;
+	else
+
+		git checkout  checkout $1
+	fi
+	
+}
+
+#####################
+#RAILS
+####################
+
+function newBranch {
+        #gitck -b MAR-$1_$(sed 's/ /_/g' <<< $2 );
+        gitck -b $1-$(sed 's/ /_/g' <<< $2 );
+        #gitck -b feature/SE-$1
+}
+
+
+
+
+function getPidOf {
+	val1=$(ps -aef | grep $1 | tr -s ' ' ' ' | cut -f2 -d ' ');
+ 	val2=$($val1 | cut -f1 -d ' ');
+	echo $val2;
+
+}
+
+function cata {
+	for i in {0..10}
+	do 
+		echo "churry!!!!!!";
+		echo "vayarte pa tu choza!";
+	done
+}
+
+function chimi {
+	for i in "chimi" "chan" "gorum"
+	do
+		echo $i;
+	done;
+}	
+
+function gorum {
+	for ((c=1;c<=5;c++))
+	do
+	echo "$c value";
+	done;
+}
+
+export PATH=/usr/local/bin:$PATH:$LOCAL_BIN:$M2_HOME/bin:$JAVA_HOME/bin:$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$SUBLIME2_HOME/bin:$CHEF_DK_HOME/bin:$NVM_DIR:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ACTIVATOR_HOME/bin:$PHP_HOME/sapi/cli:$MONGODB_HOME/bin:$GIT_HOME/bin:$VIRTUAL_BOX_CMD:$ELASTIC_HOME/bin:$PYTHON_HOME/bin:$ANACONDA_HOME/bin:$JBOSS_HOME/bin:$NGINX_SERVER_HOME/bin
+
+#rvm use 2.5.1
